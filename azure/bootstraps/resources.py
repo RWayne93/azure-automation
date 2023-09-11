@@ -1,6 +1,6 @@
 from azure.identity import DefaultAzureCredential
 from azure.mgmt.resource import ResourceManagementClient
-from azure_utils import load_env
+from azure.bootstraps.utils import load_env
 
 def list_all_resource_groups_and_resources(subscription_id):
     # Use the default credential (e.g., from environment variable or local development environment)

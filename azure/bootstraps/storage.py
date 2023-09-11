@@ -1,7 +1,7 @@
 from azure.identity import DefaultAzureCredential
 from azure.mgmt.storage import StorageManagementClient
 from azure.mgmt.resource import ResourceManagementClient
-from azure_utils import load_env
+from azure.bootstraps.utils import load_env
 
 class BaseAzureStorage:
     def __init__(self, subscription_id, resource_group_name, storage_account_name, location='eastus'):
