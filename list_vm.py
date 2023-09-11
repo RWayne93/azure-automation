@@ -39,7 +39,7 @@ class AzureImageHandler:
         # publisher_choice = int(input("\nSelect a publisher by number: "))
         # chosen_publisher = publishers[publisher_choice-1]
 
-    # List publishers
+      # List publishers
         publishers = self.list_publishers(location)
         print("\nAvailable publishers:")
         for i, publisher in enumerate(publishers, 1):
