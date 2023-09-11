@@ -1,5 +1,5 @@
 locals {
-  vms = jsondecode(file("${path.module}/../vm_config.json"))
+  vms = jsondecode(file("${path.module}/./vm_config.json"))
 }
 
 resource "azurerm_windows_virtual_machine" "main" {

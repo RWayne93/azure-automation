@@ -1,6 +1,15 @@
 from yaml import safe_load
 from azure.bootstraps.common import Config
 from typing import Sequence
+import os
+
+def load_env(filename='.env'):
+    with open(filename) as f:
+        for line in f:
+            if line.strip():
+                key, value = line.strip().split('=', 1)
+                os.environ[key] = value
+    return os.getenv('AZURE_SUBSCRIPTION_ID')
 
 def ConfigParser(config_file_path: str) -> Sequence[Config]:
     with open(config_file_path, "r") as config_file:

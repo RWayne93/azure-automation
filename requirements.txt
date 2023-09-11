@@ -5,3 +5,4 @@ azure-identity==1.14.0
 azure-mgmt-storage==21.1.0
 azure-mgmt-resource==23.0.1
 fuzzywuzzy==0.18.0
+PyYAML==6.0.1
