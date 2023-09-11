@@ -1,7 +1,6 @@
 from azure.mgmt.compute import ComputeManagementClient
 from azure.identity import DefaultAzureCredential
 from typing import List, Dict
-from azure_utils import load_env
 from fuzzywuzzy import process
 
 class AzureImageHandler:
