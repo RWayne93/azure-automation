@@ -107,7 +107,7 @@ class AzureImageHandler:
 
 
 # Test or Usage:
-subscription_id = load_env()
-handler = AzureImageHandler(subscription_id)
-handler.list_available_images()
+# subscription_id = load_env()
+# handler = AzureImageHandler(subscription_id)
+# handler.list_available_images()
 
