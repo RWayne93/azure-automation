@@ -1,9 +1,9 @@
+from azure.bootstraps.utils import load_env
+from azure.bootstraps.create_vm import AzureImageHandler
 from azure.identity import DefaultAzureCredential
 from azure.mgmt.compute import ComputeManagementClient
 from azure.mgmt.network import NetworkManagementClient
 from azure.mgmt.resource import ResourceManagementClient
-from azure_utils import load_env
-from list_vm import AzureImageHandler
 import string
 import random
 import json
