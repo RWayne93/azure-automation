@@ -1,4 +1,3 @@
-from azure.bootstraps.utils import load_env
 from azure.bootstraps.images import AzureImageHandler
 from azure.identity import DefaultAzureCredential
 from azure.mgmt.compute import ComputeManagementClient
@@ -6,7 +5,6 @@ from azure.mgmt.network import NetworkManagementClient
 from azure.mgmt.resource import ResourceManagementClient
 import string
 import random
-import json
 
 class AzureVM:
     def __init__(self, subscription_id, location='eastus'):
