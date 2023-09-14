@@ -7,7 +7,7 @@ from azure.bootstraps.utils import load_env
 import string
 import random
 
-subscription_id = load_env()
+#subscription_id = load_env()
 
 class AzureVM:
     def __init__(self, subscription_id, location='eastus'):
@@ -63,13 +63,13 @@ class AzureVM:
             selected_vm_size = image_handler.select_vm_size(self.location)
 
         # Create compute and network clients
-        compute_client = ComputeManagementClient(credential, subscription_id)
-        network_client = NetworkManagementClient(credential, subscription_id)
+        # compute_client = ComputeManagementClient(credential, subscription_id)
+        # network_client = NetworkManagementClient(credential, subscription_id)
         
         # Create a VNet
         vnet_name = vm_name + '_vnet'
         subnet_name = vm_name + '_subnet'
-        async_vnet_creation = network_client.virtual_networks.begin_create_or_update(
+        async_vnet_creation = self.network_client.virtual_networks.begin_create_or_update(
             resource_group_name,
             vnet_name,
             {
@@ -87,7 +87,7 @@ class AzureVM:
 
         # Create a public IP
         public_ip_name = vm_name + '_ip'
-        async_ip_creation = network_client.public_ip_addresses.begin_create_or_update(
+        async_ip_creation = self.network_client.public_ip_addresses.begin_create_or_update(
             resource_group_name,
             public_ip_name,
             {
@@ -101,7 +101,7 @@ class AzureVM:
 
         # Create a NIC
         nic_name = vm_name + '_nic'
-        async_nic_creation = network_client.network_interfaces.begin_create_or_update(
+        async_nic_creation = self.network_client.network_interfaces.begin_create_or_update(
             resource_group_name,
             nic_name,
             {
@@ -134,7 +134,7 @@ class AzureVM:
                     'priority': priority
                 })
                 priority += 10
-            async_nsg_creation = network_client.network_security_groups.begin_create_or_update(
+            async_nsg_creation = self.network_client.network_security_groups.begin_create_or_update(
                 resource_group_name,
                 security_group_name,
                 {
@@ -145,14 +145,14 @@ class AzureVM:
             nsg_info = async_nsg_creation.result()
 
             # Associate the NSG to the subnet
-            subnet_info = network_client.subnets.get(resource_group_name, vnet_name, subnet_name)
+            subnet_info = self.network_client.subnets.get(resource_group_name, vnet_name, subnet_name)
             subnet_info.network_security_group = {'id': nsg_info.id}
-            async_subnet_update = network_client.subnets.begin_create_or_update(
+            async_subnet_update = self.network_client.subnets.begin_create_or_update(
                 resource_group_name, vnet_name, subnet_name, subnet_info)
             async_subnet_update.result()
 
         # Create VM
-        async_vm_creation = compute_client.virtual_machines.begin_create_or_update(
+        async_vm_creation = self.compute_client.virtual_machines.begin_create_or_update(
             resource_group_name,
             vm_name,
             {
