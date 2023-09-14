@@ -3,8 +3,11 @@ from azure.identity import DefaultAzureCredential
 from azure.mgmt.compute import ComputeManagementClient
 from azure.mgmt.network import NetworkManagementClient
 from azure.mgmt.resource import ResourceManagementClient
+from azure.bootstraps.utils import load_env
 import string
 import random
+
+subscription_id = load_env()
 
 class AzureVM:
     def __init__(self, subscription_id, location='eastus'):
